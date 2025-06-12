@@ -6,7 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ChatMessage } from './ChatMessage';
-import { SendHorizonal, Loader2 } from 'lucide-react';
+import { SendHorizonal, Loader2, Bot } from 'lucide-react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { knowledgeBasedChat, KnowledgeBasedChatInput } from '@/ai/flows/knowledge-based-chat';
 import { greetAndAssist, GreetAndAssistInput } from '@/ai/flows/greeting-and-assistance';
 import { useToast } from '@/hooks/use-toast';
@@ -70,10 +71,9 @@ export function ChatInterface() {
       content: userMessageContent,
     };
     
-    // Prepare history from messages *before* adding the new user message
     const historyPayload = messages.slice(-2).map(msg => ({
       role: msg.role,
-      content: msg.content as string // Assuming content is always string here based on how it's set
+      content: typeof msg.content === 'string' ? msg.content : String(msg.content)
     }));
 
     setMessages((prevMessages) => [...prevMessages, userMessage]);
@@ -116,9 +116,19 @@ export function ChatInterface() {
             <ChatMessage key={msg.id} message={msg} />
           ))}
           {isLoading && messages.length > 0 && messages[messages.length-1].role === 'user' && (
-             <div className="flex items-start gap-3 py-4 animate-pulse">
-                <Loader2 className="h-5 w-5 text-accent animate-spin mr-2" />
-                <span className="text-sm text-muted-foreground">XOIRE AI is thinking...</span>
+             <div className="flex items-start gap-3 py-2 justify-start animate-in fade-in-50 slide-in-from-bottom-2 duration-300">
+                <Avatar className="h-8 w-8 shrink-0">
+                  <AvatarFallback className="bg-accent text-accent-foreground">
+                    <Bot className="h-5 w-5" />
+                  </AvatarFallback>
+                </Avatar>
+                <div className="bg-input text-card-foreground rounded-xl rounded-bl-none py-3 px-4 shadow-md text-[15px]">
+                  <div className="flex space-x-1.5 items-center h-5">
+                    <div className="typing-dot typing-dot-1"></div>
+                    <div className="typing-dot typing-dot-2"></div>
+                    <div className="typing-dot typing-dot-3"></div>
+                  </div>
+                </div>
             </div>
           )}
         </div>

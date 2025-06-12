@@ -3,40 +3,40 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 @layer base {
   :root {
-    --background: 267 58% 7%; /* #0D051B Deep black-violet */
-    --foreground: 0 0% 100%; /* #FFFFFF Core text color */
+    --background: 267 80% 4%; /* #0A0216 Slightly darker than original #0D051B */
+    --foreground: 0 0% 100%; /* #FFFFFF */
 
-    --card: 265 50% 9%; /* #120A23 Slightly lighter for chat window panel */
-    --card-foreground: 0 0% 100%; /* #FFFFFF */
+    --card: 265 60% 7%; /* #0E071A Darker than original #120A23 */
+    --card-foreground: 0 0% 100%;
 
-    --popover: 267 44% 13%; /* #1D1230 Dark violet for popovers */
+    --popover: 267 50% 10%; /* #140B26 Darker than original #1D1230 */
     --popover-foreground: 0 0% 100%;
 
-    --primary: 266 31% 17%; /* #2A1E3B User message bubble */
-    --primary-foreground: 0 0% 100%; /* Text on primary */
+    --primary: 266 40% 13%; /* #1F132E User message bubble */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 267 44% 13%; /* #1D1230 Chat window header, Bot bubble, Input BG */
-    --secondary-foreground: 0 0% 100%; /* Text on secondary */
+    --secondary: 267 50% 10%; /* #140B26 Chat window header, Bot bubble, Input BG */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 267 44% 10%; /* Darker shade for muted component backgrounds */
-    --muted-foreground: 223 10% 46%; /* #6B7280 Placeholder text */
+    --muted: 267 30% 15%; /* #1E152B */
+    --muted-foreground: 240 4% 65%; /* #A1A1AA Placeholder text */
 
     --accent: 258 90% 66%; /* #8B5CF6 Send button, links, highlights */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%; /* #EF4444 Error */
-    --destructive-foreground: 0 0% 100%; /* Text on destructive */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 266 31% 17%; /* #2A1E3B Borders, e.g., input border */
-    --input: 267 44% 13%; /* #1D1230 Input field background (same as bot bubble) */
-    --ring: 258 90% 70%; /* Accent color for focus rings */
+    --border: 266 40% 13%; /* #1F132E Borders, e.g., input border */
+    --input: 267 50% 10%; /* #140B26 Input field background */
+    --ring: 258 90% 70%; /* #9D75F8 Accent color for focus rings */
 
-    --radius: 0.5rem;
+    --radius: 0.75rem; /* 12px for rounded-xl */
 
     /* Chart colors suitable for dark theme (retained from previous) */
     --chart-1: 270 70% 65%;
@@ -64,4 +64,29 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Typing dot animation */
+@keyframes typing-dot-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+}
+
+.typing-dot {
+  @apply h-2 w-2 bg-muted-foreground rounded-full;
+  animation: typing-dot-bounce 1.2s infinite ease-in-out;
+}
+
+.typing-dot-1 {
+  animation-delay: -0.32s;
+}
+.typing-dot-2 {
+  animation-delay: -0.16s;
+}
+.typing-dot-3 {
+  animation-delay: 0s;
 }
