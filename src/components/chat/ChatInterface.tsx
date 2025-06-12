@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect, useRef, FormEvent } from 'react';
@@ -13,7 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 export interface Message {
   id: string;
   role: 'user' | 'assistant';
-  content: string | React.ReactNode;
+  content: string | React.ReactNode; // Content should be string for history purposes
 }
 
 export function ChatInterface() {
@@ -62,18 +63,27 @@ export function ChatInterface() {
     e.preventDefault();
     if (!inputValue.trim() || isLoading) return;
 
+    const userMessageContent = inputValue;
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
-      content: inputValue,
+      content: userMessageContent,
     };
+    
+    // Prepare history from messages *before* adding the new user message
+    const historyPayload = messages.slice(-2).map(msg => ({
+      role: msg.role,
+      content: msg.content as string // Assuming content is always string here based on how it's set
+    }));
+
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setInputValue('');
     setIsLoading(true);
 
     try {
       const chatInput: KnowledgeBasedChatInput = {
-        message: inputValue,
+        message: userMessageContent,
+        history: historyPayload.length > 0 ? historyPayload : undefined,
       };
       const aiResponse = await knowledgeBasedChat(chatInput);
       setMessages((prevMessages) => [
