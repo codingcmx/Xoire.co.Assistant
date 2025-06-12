@@ -8,45 +8,45 @@ body {
 
 @layer base {
   :root {
-    --background: 260 30% 5%; /* Page background - very dark deep purple */
-    --foreground: 250 20% 92%; /* Default text on page - light lavender/white */
+    --background: 267 58% 7%; /* #0D051B Deep black-violet */
+    --foreground: 0 0% 100%; /* #FFFFFF Core text color */
 
-    --card: 260 35% 12%; /* Chat window main surface background - dark indigo/purple */
-    --card-foreground: 250 20% 92%; /* Text in chat - light lavender/white */
+    --card: 265 50% 9%; /* #120A23 Slightly lighter for chat window panel */
+    --card-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --popover: 260 35% 10%; /* Darker popover */
-    --popover-foreground: 250 20% 92%;
+    --popover: 267 44% 13%; /* #1D1230 Dark violet for popovers */
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 270 65% 50%; /* Send button, User message bubble - vibrant rich purple */
-    --primary-foreground: 270 50% 95%; /* Text on primary - very light, almost white lavender for contrast */
+    --primary: 266 31% 17%; /* #2A1E3B User message bubble */
+    --primary-foreground: 0 0% 100%; /* Text on primary */
 
-    --secondary: 260 40% 15%; /* Chat window header background - slightly more saturated/lighter indigo than card */
-    --secondary-foreground: 250 30% 90%; /* Chat window header text/icon - light lavender */
+    --secondary: 267 44% 13%; /* #1D1230 Chat window header, Bot bubble, Input BG */
+    --secondary-foreground: 0 0% 100%; /* Text on secondary */
 
-    --muted: 260 20% 30%;
-    --muted-foreground: 260 15% 60%; /* Placeholder text - muted, darker lavender */
+    --muted: 267 44% 10%; /* Darker shade for muted component backgrounds */
+    --muted-foreground: 223 10% 46%; /* #6B7280 Placeholder text */
 
-    --accent: 270 65% 50%; /* Accents, same as primary for now */
-    --accent-foreground: 270 50% 95%;
+    --accent: 258 90% 66%; /* #8B5CF6 Send button, links, highlights */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 60% 50%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%; /* #EF4444 Error */
+    --destructive-foreground: 0 0% 100%; /* Text on destructive */
 
-    --border: 260 25% 18%; /* Borders within chat window - dark, subtle */
-    --input: 260 35% 14%; /* Input field & Assistant Message bubble background - dark indigo */
-    --ring: 270 60% 60%; /* Focus ring - related to primary */
+    --border: 266 31% 17%; /* #2A1E3B Borders, e.g., input border */
+    --input: 267 44% 13%; /* #1D1230 Input field background (same as bot bubble) */
+    --ring: 258 90% 70%; /* Accent color for focus rings */
 
     --radius: 0.5rem;
 
-    /* Chart colors suitable for dark theme */
+    /* Chart colors suitable for dark theme (retained from previous) */
     --chart-1: 270 70% 65%;
     --chart-2: 250 60% 60%;
     --chart-3: 220 50% 70%;
     --chart-4: 30 80% 65%;
     --chart-5: 150 75% 60%;
 
-    /* Sidebar colors for dark theme */
-    --sidebar-background: 260 30% 8%; /* Darker for sidebar */
+    /* Sidebar colors for dark theme (retained from previous) */
+    --sidebar-background: 260 30% 8%;
     --sidebar-foreground: 250 20% 88%;
     --sidebar-primary: 270 65% 50%;
     --sidebar-primary-foreground: 270 50% 95%;

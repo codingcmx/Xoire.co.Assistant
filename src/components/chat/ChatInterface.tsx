@@ -107,7 +107,7 @@ export function ChatInterface() {
           ))}
           {isLoading && messages.length > 0 && messages[messages.length-1].role === 'user' && (
              <div className="flex items-start gap-3 py-4 animate-pulse">
-                <Loader2 className="h-5 w-5 text-primary animate-spin mr-2" />
+                <Loader2 className="h-5 w-5 text-accent animate-spin mr-2" />
                 <span className="text-sm text-muted-foreground">XOIRE AI is thinking...</span>
             </div>
           )}
@@ -123,11 +123,16 @@ export function ChatInterface() {
           placeholder="Ask Xoire AI..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="flex-grow bg-input placeholder:text-muted-foreground text-card-foreground"
+          className="flex-grow bg-input placeholder:text-muted-foreground text-card-foreground border-border rounded-[10px] py-3 px-4 text-[15px]"
           disabled={isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user')}
           aria-label="Chat input"
         />
-        <Button type="submit" size="icon" disabled={isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user')} aria-label="Send message">
+        <Button 
+          type="submit" 
+          disabled={isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user')} 
+          aria-label="Send message"
+          className="rounded-full p-[10px] bg-accent hover:bg-[#7C3AED] text-accent-foreground w-auto h-auto"
+        >
           {isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user') ? (
             <Loader2 className="h-5 w-5 animate-spin" />
           ) : (

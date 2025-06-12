@@ -21,14 +21,14 @@ export function ChatMessage({ message }: ChatMessageProps) {
     >
       {!isUser && (
         <Avatar className="h-8 w-8 shrink-0">
-          <AvatarFallback className="bg-primary text-primary-foreground">
+          <AvatarFallback className="bg-accent text-accent-foreground">
             <Bot className="h-5 w-5" />
           </AvatarFallback>
         </Avatar>
       )}
       <div
         className={cn(
-          'max-w-[80%] rounded-lg p-3 shadow-md text-sm',
+          'max-w-[85%] rounded-xl py-3 px-4 shadow-md text-[15px]',
           isUser
             ? 'bg-primary text-primary-foreground rounded-br-none'
             : 'bg-input text-card-foreground rounded-bl-none'
