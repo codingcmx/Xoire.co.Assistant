@@ -128,12 +128,7 @@ const knowledgeBasedChatPrompt = ai.definePrompt({
   name: 'knowledgeBasedChatPrompt',
   input: {schema: KnowledgeBasedChatInputSchema},
   output: {schema: KnowledgeBasedChatOutputSchema},
-  prompt: `{{message}}\n{{
-    #if history
-    }}History:{{history}}
-    {{
-    /if
-    }}\n` + systemInstructions,
+  prompt: `{{message}} {{#if history}}History:{{history}}{{/if}}\n` + systemInstructions,
 });
 
 const knowledgeBasedChatFlow = ai.defineFlow(
@@ -147,4 +142,3 @@ const knowledgeBasedChatFlow = ai.defineFlow(
     return output!;
   }
 );
-
