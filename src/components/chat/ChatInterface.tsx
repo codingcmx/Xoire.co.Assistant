@@ -1,0 +1,141 @@
+'use client';
+
+import React, { useState, useEffect, useRef, FormEvent } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { ChatMessage } from './ChatMessage';
+import { SendHorizonal, Loader2 } from 'lucide-react';
+import { knowledgeBasedChat, KnowledgeBasedChatInput } from '@/ai/flows/knowledge-based-chat';
+import { greetAndAssist, GreetAndAssistInput } from '@/ai/flows/greeting-and-assistance';
+import { useToast } from '@/hooks/use-toast';
+
+export interface Message {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string | React.ReactNode;
+}
+
+export function ChatInterface() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFirstMessageSent, setIsFirstMessageSent] = useState(false);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    async function getInitialGreeting() {
+      setIsLoading(true);
+      try {
+        const greetingInput: GreetAndAssistInput = { firstMessage: true };
+        const response = await greetAndAssist(greetingInput);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { id: Date.now().toString(), role: 'assistant', content: response.greeting },
+        ]);
+      } catch (error) {
+        console.error('Error fetching greeting:', error);
+        toast({
+          title: "Error",
+          description: "Could not fetch initial greeting.",
+          variant: "destructive",
+        });
+      }
+      setIsLoading(false);
+    }
+    getInitialGreeting();
+  }, [toast]);
+  
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      scrollAreaRef.current.scrollTo({ top: scrollAreaRef.current.scrollHeight, behavior: 'smooth' });
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [isLoading]);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!inputValue.trim() || isLoading) return;
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: inputValue,
+    };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setInputValue('');
+    setIsLoading(true);
+
+    try {
+      const chatInput: KnowledgeBasedChatInput = {
+        message: inputValue,
+        // history: messages.map(msg => ({ role: msg.role, content: typeof msg.content === 'string' ? msg.content : "ReactNode Content" })) // Simplified for now
+      };
+      const aiResponse = await knowledgeBasedChat(chatInput);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { id: (Date.now() + 1).toString(), role: 'assistant', content: aiResponse.response },
+      ]);
+      if (!isFirstMessageSent) {
+        setIsFirstMessageSent(true);
+      }
+    } catch (error) {
+      console.error('Error in knowledgeBasedChat:', error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { id: (Date.now() + 1).toString(), role: 'assistant', content: "Sorry, I encountered an error. Please try again." },
+      ]);
+       toast({
+          title: "Chat Error",
+          description: "Failed to get response from AI. Please try again.",
+          variant: "destructive",
+        });
+    }
+    setIsLoading(false);
+  };
+
+  return (
+    <div className="flex flex-col h-[calc(100vh-12rem)] max-w-3xl mx-auto bg-card shadow-xl rounded-lg">
+      <ScrollArea className="flex-grow p-4 md:p-6" ref={scrollAreaRef}>
+        <div className="space-y-4">
+          {messages.map((msg) => (
+            <ChatMessage key={msg.id} message={msg} />
+          ))}
+          {isLoading && messages.length > 0 && messages[messages.length-1].role === 'user' && (
+             <div className="flex items-start gap-3 py-4 animate-pulse">
+                <Loader2 className="h-5 w-5 text-primary animate-spin mr-2" />
+                <span className="text-sm text-muted-foreground">XOIRE AI is thinking...</span>
+            </div>
+          )}
+        </div>
+      </ScrollArea>
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center gap-2 border-t border-border p-4 bg-background rounded-b-lg"
+      >
+        <Input
+          ref={inputRef}
+          type="text"
+          placeholder="Ask XOIRE AI anything..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          className="flex-grow"
+          disabled={isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user')}
+          aria-label="Chat input"
+        />
+        <Button type="submit" size="icon" disabled={isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user')} aria-label="Send message">
+          {isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user') ? (
+            <Loader2 className="h-5 w-5 animate-spin" />
+          ) : (
+            <SendHorizonal className="h-5 w-5" />
+          )}
+        </Button>
+      </form>
+    </div>
+  );
+}
