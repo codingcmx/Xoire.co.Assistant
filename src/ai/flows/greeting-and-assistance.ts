@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -30,18 +31,7 @@ const prompt = ai.definePrompt({
   input: {schema: GreetAndAssistInputSchema},
   output: {schema: GreetAndAssistOutputSchema},
   prompt: `{{#if firstMessage}}
-🤖 Welcome to XOIRE AI! I'm here to assist you with any questions you have about our services and products.
-
-XOIRE AI helps you **Build Smart, Scale Faster, and Rule with AI.** We provide premium AI systems, including:
-
-- **AI Trading Systems** (*TradeTitan AI*)
-- **Business Automation** (*AutoNexus Flow*)
-- **AI Lead Generation** (*LeadSpark AI*)
-- **AI Marketing**
-- **AI Coding Tools**
-- **Intelligent Chatbots**
-
-How can I help you today?  You can also **Book a Meeting** or fill out the **Contact Form** at the bottom of the page.
+Hello! I'm the Xoire Al Assistant. How can I help you learn about Xoire Al today?
 {{else}}
 How can I assist you further? You can also **Book a Meeting** or fill out the **Contact Form** at the bottom of the page.
 {{/if}}`,
