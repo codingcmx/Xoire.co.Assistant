@@ -8,56 +8,53 @@ body {
 
 @layer base {
   :root {
-    --background: 210 20% 17%; /* #222B33 */
-    --foreground: 210 40% 98%; /* Light gray/white for text */
+    --background: 250 40% 8%; /* Page background - very dark deep blue/purple */
+    --foreground: 240 25% 95%; /* Default text on page */
 
-    --card: 210 20% 15%; /* Slightly darker than background for card elements */
-    --card-foreground: 210 40% 98%;
+    --card: 250 35% 12%; /* Chat window main surface background */
+    --card-foreground: 240 25% 95%;
 
-    --popover: 210 20% 12%; /* Darker for popovers */
-    --popover-foreground: 210 40% 98%;
+    --popover: 250 35% 10%;
+    --popover-foreground: 240 25% 95%;
 
-    --primary: 200 60% 42%; /* #2E86AB */
-    --primary-foreground: 200 60% 95%; /* Light text on primary */
+    --primary: 270 65% 60%; /* Send button, User message bubble - vibrant purple */
+    --primary-foreground: 270 70% 94%; /* Text on primary - light lavender */
 
-    --secondary: 210 15% 25%; /* A slightly lighter shade of background for secondary elements */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 250 30% 16%; /* Chat window header background */
+    --secondary-foreground: 270 50% 85%; /* Chat window header text/icon - lavender */
 
-    --muted: 210 15% 22%;
-    --muted-foreground: 210 20% 65%; /* Adjusted for better contrast on dark muted background */
+    --muted: 250 25% 25%;
+    --muted-foreground: 270 35% 70%; /* Placeholder text - muted lavender */
 
-    --accent: 180 100% 25%; /* #008080 */
-    --accent-foreground: 180 100% 90%; /* Light text on accent */
+    --accent: 270 65% 60%; /* Accents, can be same as primary */
+    --accent-foreground: 270 70% 94%;
 
-    --destructive: 0 62.8% 30.6%; /* Keeping a standard destructive red, but dark theme version */
+    --destructive: 0 60% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 210 15% 30%; /* Slightly lighter border for subtle separation */
-    --input: 210 15% 25%; /* Input background similar to secondary */
-    --ring: 200 60% 55%; /* Brighter primary for focus rings */
+    --border: 250 25% 28%; /* Borders within chat window */
+    --input: 260 30% 20%; /* Input field & Assistant Message bubble background */
+    --ring: 270 70% 70%; /* Focus ring */
 
     --radius: 0.5rem;
 
     /* Chart colors suitable for dark theme */
-    --chart-1: 200 70% 50%; /* Brighter primary variant */
-    --chart-2: 180 60% 45%; /* Accent variant */
-    --chart-3: 220 50% 60%; /* A complementary blue/purple */
-    --chart-4: 30 80% 55%;  /* A warm contrasting color */
-    --chart-5: 150 75% 55%; /* A contrasting green */
+    --chart-1: 270 70% 65%; /* Brighter primary variant */
+    --chart-2: 250 60% 60%; /* Accent variant */
+    --chart-3: 220 50% 70%; /* A complementary blue/purple */
+    --chart-4: 30 80% 65%;  /* A warm contrasting color */
+    --chart-5: 150 75% 60%; /* A contrasting green */
 
     /* Sidebar colors for dark theme */
-    --sidebar-background: 210 20% 13%; /* Even darker for sidebar */
-    --sidebar-foreground: 210 40% 90%;
-    --sidebar-primary: 200 60% 42%;
-    --sidebar-primary-foreground: 200 60% 95%;
-    --sidebar-accent: 180 100% 25%;
-    --sidebar-accent-foreground: 180 100% 90%;
-    --sidebar-border: 210 15% 25%;
-    --sidebar-ring: 200 60% 55%;
+    --sidebar-background: 250 40% 10%; /* Darker for sidebar */
+    --sidebar-foreground: 240 25% 90%;
+    --sidebar-primary: 270 65% 60%;
+    --sidebar-primary-foreground: 270 70% 94%;
+    --sidebar-accent: 250 30% 16%;
+    --sidebar-accent-foreground: 270 50% 85%;
+    --sidebar-border: 250 25% 25%;
+    --sidebar-ring: 270 70% 70%;
   }
-
-  /* Remove .dark class selector as dark theme is default */
-  /* Styles previously under .dark are now in :root */
 }
 
 @layer base {

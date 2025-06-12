@@ -74,7 +74,6 @@ export function ChatInterface() {
     try {
       const chatInput: KnowledgeBasedChatInput = {
         message: inputValue,
-        // history: messages.map(msg => ({ role: msg.role, content: typeof msg.content === 'string' ? msg.content : "ReactNode Content" })) // Simplified for now
       };
       const aiResponse = await knowledgeBasedChat(chatInput);
       setMessages((prevMessages) => [
@@ -100,7 +99,7 @@ export function ChatInterface() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-12rem)] max-w-3xl mx-auto bg-card shadow-xl rounded-lg">
+    <div className="flex flex-col flex-grow overflow-hidden bg-card">
       <ScrollArea className="flex-grow p-4 md:p-6" ref={scrollAreaRef}>
         <div className="space-y-4">
           {messages.map((msg) => (
@@ -116,15 +115,15 @@ export function ChatInterface() {
       </ScrollArea>
       <form
         onSubmit={handleSubmit}
-        className="flex items-center gap-2 border-t border-border p-4 bg-background rounded-b-lg"
+        className="flex items-center gap-2 border-t border-border p-3 bg-card"
       >
         <Input
           ref={inputRef}
           type="text"
-          placeholder="Ask XOIRE AI anything..."
+          placeholder="Ask Xoire AI..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="flex-grow"
+          className="flex-grow bg-input placeholder:text-muted-foreground text-card-foreground"
           disabled={isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user')}
           aria-label="Chat input"
         />
