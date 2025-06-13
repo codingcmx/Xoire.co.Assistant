@@ -10,9 +10,10 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors https://your-embedding-site.com;"
+          "value": "frame-ancestors https://YOUR_FIREBASE_STUDIO_PREVIEW_URL.cloudworkstations.dev;"
         }
       ]
     }
   ]
 }
+
