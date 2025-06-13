@@ -146,12 +146,14 @@ export function ChatInterface() {
           className="flex-grow bg-input placeholder:text-muted-foreground text-card-foreground border-border rounded-[10px] py-3 px-4 text-[15px]"
           disabled={isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user')}
           aria-label="Chat input"
+          suppressHydrationWarning
         />
         <Button 
           type="submit" 
           disabled={isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user')} 
           aria-label="Send message"
           className="rounded-full p-[10px] bg-accent hover:bg-[#7C3AED] text-accent-foreground w-auto h-auto"
+          suppressHydrationWarning
         >
           {isLoading && !(messages.length > 0 && messages[messages.length-1].role === 'user') ? (
             <Loader2 className="h-5 w-5 animate-spin" />
