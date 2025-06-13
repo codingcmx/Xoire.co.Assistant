@@ -5,16 +5,17 @@
       "headers": [
         {
           "key": "X-Frame-Options",
-          "value": "ALLOWALL"
+          "value": "DENY"
         },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors *"
+          "value": "frame-ancestors https://9000-firebase-studio-1749144183988.cluster-6dx7corvpngoivimwvvljgokdw.cloudworkstations.dev;"
         }
       ]
     }
   ]
 }
+
 
 
 
