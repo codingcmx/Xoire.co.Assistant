@@ -10,7 +10,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors https://YOUR_FIREBASE_STUDIO_PREVIEW_URL.cloudworkstations.dev;"
+          "value": "frame-ancestors https://9000-firebase-studio-1749144183988.cluster-6dx7corvpngoivimwvvljgokdw.cloudworkstations.dev;"
         }
       ]
     }
