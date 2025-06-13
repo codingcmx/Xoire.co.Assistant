@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/embed",
+      "source": "/(.*)",  // apply to all paths
       "headers": [
         {
           "key": "Content-Security-Policy",
@@ -11,3 +11,4 @@
     }
   ]
 }
+
