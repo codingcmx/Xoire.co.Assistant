@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors https://xoire-labs.vercel.app https://9000-firebase-studio-1749144183988.cluster-6dx7corvpngoivimwvvljgokdw.cloudworkstations.dev;"
+          "value": "frame-ancestors https://xoire-labs.vercel.app https://9000-firebase-studio-1749144183988.cluster-6dx7corvpngoivimwvvljgokdw.cloudworkstations.dev https://6000-firebase-studio-1749144183988.cluster-6dx7corvpngoivimwvvljgokdw.cloudworkstations.dev;"
         },
         {
           "key": "X-Frame-Options",
